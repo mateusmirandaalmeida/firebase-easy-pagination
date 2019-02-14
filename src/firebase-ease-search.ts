@@ -1,6 +1,6 @@
 import { FirebaseEaseOptions } from './interfaces/firebase-ease-options'
 import { FirebaseEaseCondition } from './interfaces/firebase-ease-condition'
-import firebase from 'firebase'
+import { firestore } from 'firebase'
 
 class FirebaseEasySearch {
     private db
@@ -8,13 +8,11 @@ class FirebaseEasySearch {
     private orders: Array<{ field: string, dir: string }>
     private conditions: Array<FirebaseEaseCondition>
     private values: Array<any>
-    private pageSize: number
 
     constructor(public ref: string, public _currentPage: number, public options?: FirebaseEaseOptions) {
-        this.db = firebase.firestore()
+        this.db = firestore()
         this.conditions = []
         this.orders = []
-        this.pageSize = this.options ? this.options.pageSize : 10
     }
 
     where(condition) {
@@ -61,15 +59,15 @@ class FirebaseEasySearch {
 
     private paginate(array, pageSize, page) {
         --page
-        return array.slice(page * pageSize, (page + 1) * pageSize);
+        return array.slice(page * pageSize, (page + 1) * pageSize)
     }
 
     executePage(page) {
         this.callback({
             count: this.values.length,
-            pageSize: this.pageSize,
+            pageSize: this.options.pageSize,
             page,
-            values: this.paginate(this.values, this.pageSize, page),
+            values: this.paginate(this.values, this.options.pageSize, page),
         })
     }
 

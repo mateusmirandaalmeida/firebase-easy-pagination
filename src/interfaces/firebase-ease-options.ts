@@ -1,3 +1,4 @@
 export interface FirebaseEaseOptions {
-    pageSize: number,
+    pageSize?: number,
+    firebaseConfig: any,
 }

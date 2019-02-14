@@ -3,9 +3,6 @@
         "sourceMap": true,
         "allowSyntheticDefaultImports": true,
         "declaration": false,
-        "types": [
-            "node"
-        ],
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "lib": [

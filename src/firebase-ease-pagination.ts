@@ -1,12 +1,18 @@
 import { FirebaseEaseOptions } from './interfaces/firebase-ease-options'
 import { FirebaseEasySearch } from './firebase-ease-search'
+import { apps, initializeApp } from 'firebase'
 
 class FirebaseEasyPagination {
 
     private _search: FirebaseEasySearch
     private _currentPage: number
 
-    constructor(public ref: string, public options?: FirebaseEaseOptions) { }
+    constructor(public ref: string, public options: FirebaseEaseOptions) {
+        options.pageSize = options.pageSize || 10
+        if (apps.length == 0) {
+            initializeApp(options.firebaseConfig)
+        }
+    }
 
     public search() {
         this._currentPage = 1

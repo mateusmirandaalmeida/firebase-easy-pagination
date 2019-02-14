@@ -1,4 +1,21 @@
 import firebase from 'firebase'
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyA47Q6ZymxRJsQcDmiINjs_6lIGqTEl1gg",
+    authDomain: "tiker-63117.firebaseapp.com",
+    databaseURL: "https://tiker-63117.firebaseio.com",
+    projectId: "tiker-63117",
+    storageBucket: "tiker-63117.appspot.com",
+    messagingSenderId: "664566487582"
+};
+
+
+
+
+
+
+
+
 
 
 
@@ -9,7 +26,7 @@ class Controller {
     private pagination: FirebaseEasyPagination
 
     constructor() {
-        this.pagination = new FirebaseEasyPagination('users')
+        this.pagination = new FirebaseEasyPagination('users', { firebaseConfig: config })
     }
 
     search() {
@@ -45,16 +62,8 @@ class Controller {
 
 
 
-// Initialize Firebase
-var config = {
-    apiKey: "AIzaSyA47Q6ZymxRJsQcDmiINjs_6lIGqTEl1gg",
-    authDomain: "tiker-63117.firebaseapp.com",
-    databaseURL: "https://tiker-63117.firebaseio.com",
-    projectId: "tiker-63117",
-    storageBucket: "tiker-63117.appspot.com",
-    messagingSenderId: "664566487582"
-};
-firebase.initializeApp(config);
+
+// firebase.initializeApp(config);
 
 
 
