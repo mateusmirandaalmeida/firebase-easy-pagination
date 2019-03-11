@@ -20,7 +20,7 @@ class FirebaseEasyPagination {
     }
 
     public search() {
-        this._currentPage = 1
+        this._currentPage = this._currentPage || 1
         this._search = new FirebaseEasySearch(this.inititalRef, this._currentPage, this.options)
         return this._search
     }
@@ -29,6 +29,11 @@ class FirebaseEasyPagination {
         if (!this._search) {
             throw 'É preciso executar o a funcão de busca para navegar entre as paginas.'
         }
+    }
+
+    page(page) {
+        this._currentPage = page
+        return this
     }
 
     public next() {
