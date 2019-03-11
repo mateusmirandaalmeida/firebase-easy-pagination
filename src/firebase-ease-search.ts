@@ -71,9 +71,22 @@ class FirebaseEasySearch {
         })
     }
 
+    getFirebaseRef(refValue) {
+        debugger
+        let ref = this.db
+        refValue.replace(/ /g, '').split('->')
+            .map((dir, i) => {
+                return { dir, exec: (i % 2 === 0 ? 'collection' : 'doc') }
+            })
+            .forEach((refItem) => {
+                ref = ref[refItem.exec](refItem.dir)
+            })
+        return ref
+    }
+
     async onExecute(_callback) {
         this.callback = _callback
-        const firebaseRef = this.db.collection(this.ref)
+        const firebaseRef = this.ref.includes('->') ? this.getFirebaseRef(this.ref) : this.db.collection(this.ref)
         const response = await firebaseRef.get()
         this.values = this.createValues(response.docs)
         this.executePage(this._currentPage)

@@ -7,16 +7,21 @@ class FirebaseEasyPagination {
     private _search: FirebaseEasySearch
     private _currentPage: number
 
-    constructor(public ref: string, public options: FirebaseEaseOptions) {
+    constructor(public inititalRef: string, public options: FirebaseEaseOptions) {
         options.pageSize = options.pageSize || 10
         if (apps.length == 0) {
             initializeApp(options.firebaseConfig)
         }
     }
+    
+    public ref(dir: string) {
+       this.inititalRef = dir
+       return this
+    }
 
     public search() {
         this._currentPage = 1
-        this._search = new FirebaseEasySearch(this.ref, this._currentPage, this.options)
+        this._search = new FirebaseEasySearch(this.inititalRef, this._currentPage, this.options)
         return this._search
     }
 
