@@ -72,7 +72,6 @@ class FirebaseEasySearch {
     }
 
     getFirebaseRef(refValue) {
-        debugger
         let ref = this.db
         refValue.replace(/ /g, '').split('->')
             .map((dir, i) => {
