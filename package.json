@@ -22,7 +22,7 @@
     "@firebase/polyfill": "^0.3.36",
     "@firebase/remote-config": "^0.1.25",
     "@firebase/storage": "^0.3.39",
-    "@firebase/util": "^0.2.50",
+    "@firebase/util": "^0.3.4",
     "firebase": "^7.16.0",
     "ts-loader": "^5.3.3",
     "typescript": "^3.3.3",
